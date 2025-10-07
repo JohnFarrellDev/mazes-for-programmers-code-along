@@ -27,7 +27,9 @@ body {
   /* 5. Improve text rendering */
   -webkit-font-smoothing: antialiased;
   min-height: 100svh;
-  padding-block-start: 16px;
+  padding-block: 16px;
+  display: flex;
+  flex-direction: column;
 }
 
 /* 6. Improve media defaults */
@@ -72,8 +74,21 @@ h6 {
   text-wrap: balance;
 }
 
-main {
-  display: block;
+.container {
   max-width: min(800px, 70ch);
   margin: 0 auto;
+}
+
+footer {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  vertical-align: bottom;
+  text-align: center;
+}
+
+footer hr {
+  margin-inline: 16px;
+  margin-block: 16px;
 }
