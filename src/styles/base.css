@@ -82,6 +82,7 @@ h6 {
 footer {
   flex-grow: 1;
   display: flex;
+  margin-top: 16px;
   flex-direction: column;
   justify-content: flex-end;
   vertical-align: bottom;
