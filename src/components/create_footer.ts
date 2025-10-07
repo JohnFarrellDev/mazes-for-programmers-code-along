@@ -1,18 +1,25 @@
+import { create_div } from "./create_div";
+import { create_link } from "./create_link";
+import { create_paragraph } from "./create_paragraph";
+
 export function create_footer() {
-  const text = document.createElement("p");
-  text.innerText = "Created by John Farrell (2025)";
+  const footer_text = create_paragraph({
+    textContent: "Created by John Farrell (2025)",
+  });
 
-  const link = document.createElement("a");
-  link.href = "https://www.johnfarrell.dev/";
-  link.target = "_blank";
-  link.referrerPolicy = "no-referrer";
-  link.rel = "noreferrer";
-  link.text = "JohnFarrell.dev";
+  const link = create_link({
+    textContent: "JohnFarrell.dev",
+    href: "https://www.johnfarrell.dev/",
+    target: "_blank",
+    referrerPolicy: "no-referrer",
+    rel: "noreferrer",
+  });
 
-  const container = document.createElement("div");
-  container.className = "container";
+  const container = create_div({
+    className: "container",
+  });
 
-  container.appendChild(text);
+  container.appendChild(footer_text);
   container.appendChild(link);
 
   const hr = document.createElement("hr");
