@@ -1,11 +1,13 @@
 .heading {
   text-align: center;
   font-size: 2.5rem;
+  margin-bottom: 24px;
 }
 
-.subheading {
-  text-align: center;
-  font-size: 1.75rem;
+.text-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .chapter-sections {
