@@ -21,7 +21,5 @@ export function create_footer() {
   footer.appendChild(hr);
   footer.appendChild(container);
 
-  console.log(footer);
-
-  document.querySelector("#app")?.appendChild(footer);
+  document.querySelector("main")?.insertAdjacentElement("afterend", footer);
 }

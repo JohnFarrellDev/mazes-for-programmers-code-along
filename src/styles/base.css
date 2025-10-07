@@ -32,6 +32,10 @@ body {
   flex-direction: column;
 }
 
+main {
+  flex-grow: 1;
+}
+
 /* 6. Improve media defaults */
 img,
 picture,
@@ -80,7 +84,6 @@ h6 {
 }
 
 footer {
-  flex-grow: 1;
   display: flex;
   margin-top: 16px;
   flex-direction: column;
