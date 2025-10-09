@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mazes for Programmers Code Along</title>
+    <link rel="stylesheet" href="/src/styles/base.css" />
+    <link rel="stylesheet" href="/src/styles/prism.css" />
+  </head>
+  <body id="app">
+    <main class="container">
+      <h1 class="heading">Generating Basic Mazes</h1>
+      <div class="page-content">
+        <p>
+          At this early stage in the book all mazes are simple 2D rectangle. Due
+          to this simplicity we can represent mazes as 2 dimensional arrays. The
+          only inputs for generating the size of the maze will be providing a
+          width and height.
+        </p>
+        <p>
+          Initially lets generate a basic 2D grid where each cell inside the
+          grid displays its row index followed by the column index
+        </p>
+
+        <pre class="language-html">
+export class Maze {
+    #height: number;
+    #width: number;
+    #cells: Array&lt;Array&lt;string&gt;&gt;;
+
+    constructor(width: number, height: number) {
+        this.#width = width;
+        this.#height = height;
+
+        this.#cells = Array.from({ length: this.#height }, (_, rowIndex) => {
+            return Array.from({ length: this.#width }, (_, columnIndex) => {
+                return `${rowIndex}-${columnIndex}`;
+            });
+        });
+    }
+}
+      </pre
+        >
+        <p>
+          Below we generate our starting grid with a width of 4 and a height of
+          5. Obviously this doesn't look much like a maze yet.
+        </p>
+        <div id="basic-maze-container"></div>
+        <p>Next step we'll add some border styling and remove the text.</p>
+        <div id="basic-maze-container-bordered"></div>
+      </div>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+    <script
+      type="module"
+      src="/src/pages/basic-maze-generation/basic-maze-generation.ts"
+    ></script>
+  </body>
+</html>

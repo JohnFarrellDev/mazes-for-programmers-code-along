@@ -1,20 +1,8 @@
-.heading {
-  text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 24px;
-}
-
-.text-section {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
 .chapter-sections {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin-top: 32px;
+  margin-top: 16px;
 }
 
 .chapter-sections a {
