@@ -25,11 +25,11 @@ export class Maze {
     const container = create_div({ id: "maze-container" });
 
     this.cells.forEach((row) => {
-      const rowContainer = create_div({});
+      const rowContainer = create_div();
       rowContainer.style.display = "flex";
 
       row.forEach((cell) => {
-        const cellElement = create_div({});
+        const cellElement = create_div();
         cellRenderer?.(cell, cellElement);
         rowContainer.appendChild(cellElement);
       });
