@@ -42,12 +42,32 @@ export class Maze {
       </pre
         >
         <p>
-          Below we generate our starting grid with a width of 4 and a height of
-          5. Obviously this doesn't look much like a maze yet.
+          Below we generate our starting grid with a width of 6 and a height of
+          8. Obviously this doesn't look much like a maze yet.
         </p>
         <div id="basic-maze-container"></div>
         <p>Next step we'll add some border styling and remove the text.</p>
         <div id="basic-maze-container-bordered"></div>
+        <p>
+          Now we can see that if we were to remove some of the borders around
+          each cell we could construct a reasonable looking maze. This will be
+          where out first algorithm comes in, the binary tree algorithm.
+        </p>
+        <p>
+          The binary tree algorithm requires us to visit every cell in the maze
+          once, this can be done in any order. At each cell we make a 50/50
+          choice to either remove the top border or the right border.
+        </p>
+        <p>
+          For the very top row of cells we cannot remove the top border so must
+          remove the border to the right. For the cells on the very right we
+          must remove the top border.
+        </p>
+        <p>
+          While this algorithm is very simple and easy you will see that it has
+          some drawbacks, the generated maze has a certain predictable pattern
+          to it which makes it easy to solve.
+        </p>
       </div>
     </main>
     <script type="module" src="/src/main.ts"></script>
