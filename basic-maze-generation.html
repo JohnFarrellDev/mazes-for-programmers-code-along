@@ -23,30 +23,148 @@
         </p>
 
         <pre class="language-html">
+// maze.ts
+
+import { Cell } from &quot;./cell&quot;;
+
 export class Maze {
-    #height: number;
-    #width: number;
-    #cells: Array&lt;Array&lt;string&gt;&gt;;
+  #cells: Array&lt;Array&lt;Cell&gt;&gt;;
 
-    constructor(width: number, height: number) {
-        this.#width = width;
-        this.#height = height;
+  constructor(width: number, height: number) {
+    this.#cells = Array.from({ length: height }, (_, rowIndex) =&gt; {
+      return Array.from({ length: width }, (_, columnIndex) =&gt; {
+        return new Cell(rowIndex, columnIndex);
+      });
+    });
+  }
 
-        this.#cells = Array.from({ length: this.#height }, (_, rowIndex) => {
-            return Array.from({ length: this.#width }, (_, columnIndex) => {
-                return `${rowIndex}-${columnIndex}`;
-            });
-        });
-    }
+  get cells() {
+    return this.#cells;
+  }
 }
-      </pre
+</pre
+        >
+
+        <p>
+          To take our 2D array we need to have a render function, considering we
+          may represent out mazes in various ways we will create a maze_render
+          interface which classes can implement. This function will be designed
+          to take in a Maze and return HTML, this could later be extended to the
+          Canvas API, SVGs or WebGL.
+        </p>
+
+        <pre class="language-html">
+// maze_renderer.ts
+
+import type { Maze } from &quot;./maze&quot;;
+
+export interface Maze_Render {
+  render(maze: Maze): HTMLDivElement;
+}
+</pre
+        >
+
+        <p>
+          First lets generate a grid from our 2D Maze array and correctly
+          identify each column and row within the grid, first we produce our
+          Numerical_Maze class which implements the Maze_Renderer interface.
+        </p>
+
+        <pre class="language-html">
+import { create_div } from &quot;../components/create_div&quot;;
+import { Maze } from &quot;./maze&quot;;
+import type { Maze_Render } from &quot;./maze_renderer&quot;;
+
+export class Numerical_Maze implements Maze_Render {
+  render(maze: Maze): HTMLDivElement {
+    const container = create_div({ id: &quot;maze-container-numerical&quot; });
+
+    maze.cells.forEach((row) =&gt; {
+      const row_container = create_div();
+      row_container.style.display = &quot;flex&quot;;
+
+      row.forEach((cell) =&gt; {
+        const cell_element = create_div();
+
+        cell_element.style.width = &quot;40px&quot;;
+        cell_element.style.height = &quot;40px&quot;;
+        cell_element.style.display = &quot;grid&quot;;
+        cell_element.style.placeItems = &quot;center&quot;;
+
+        cell_element.textContent = `${cell.column + cell.row * row.length}`;
+
+        row_container.append(cell_element);
+      });
+
+      container.appendChild(row_container);
+    });
+
+    return container;
+  }
+}
+</pre
         >
         <p>
-          Below we generate our starting grid with a width of 6 and a height of
-          8. Obviously this doesn't look much like a maze yet.
+          And with that code we can make a Maze with a width of 6 and a height
+          of 8, pass it to our Numerical_Maze render function and return the
+          below HTML.
         </p>
         <div id="basic-maze-container"></div>
-        <p>Next step we'll add some border styling and remove the text.</p>
+        <p>
+          Next step we'll add some border styling and remove the text. Let's
+          create a Bordered_Maze class with implements Maze_Renderer as well.
+        </p>
+        <pre class="language-html">
+import { create_div } from &quot;../components/create_div&quot;;
+import { Maze } from &quot;./maze&quot;;
+import type { Maze_Render } from &quot;./maze_renderer&quot;;
+
+export class Bordered_Maze implements Maze_Render {
+  render(maze: Maze): HTMLDivElement {
+    const container = create_div({ id: &quot;maze-container-bordered&quot; });
+
+    maze.cells.forEach((row, row_index) =&gt; {
+      const row_container = create_div();
+      row_container.style.display = &quot;flex&quot;;
+
+      row.forEach((cell, column_index) =&gt; {
+        const cell_element = create_div();
+
+        cell_element.style.width = &quot;40px&quot;;
+        cell_element.style.height = &quot;40px&quot;;
+
+        // north
+        if (cell.borders[0]) {
+          cell_element.style.borderTop = &quot;2px solid white&quot;;
+        }
+        // west
+        if (cell.borders[3]) {
+          cell_element.style.borderLeft = &quot;2px solid white&quot;;
+        }
+        // south — only bottom edge
+        if (cell.borders[2] &amp;&amp; row_index === maze.cells.length - 1) {
+          cell_element.style.borderBottom = &quot;2px solid white&quot;;
+        }
+        // east — only rightmost edge
+        if (cell.borders[1] &amp;&amp; column_index === maze.cells[0].length - 1) {
+          cell_element.style.borderRight = &quot;2px solid white&quot;;
+        }
+
+        row_container.append(cell_element);
+      });
+
+      container.appendChild(row_container);
+    });
+
+    return container;
+  }
+}
+</pre
+        >
+        <p>
+          We can take the same maze object as before and now pass it to the
+          Bordered_Maze render function and return the below.
+        </p>
         <div id="basic-maze-container-bordered"></div>
         <p>
           Now we can see that if we were to remove some of the borders around

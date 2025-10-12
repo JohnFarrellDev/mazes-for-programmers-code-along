@@ -18,7 +18,7 @@ export class Numerical_Maze implements Maze_Render {
         cell_element.style.display = "grid";
         cell_element.style.placeItems = "center";
 
-        cell_element.textContent = `${cell.column + 1 + cell.row * row.length}`;
+        cell_element.textContent = `${cell.column + cell.row * row.length}`;
 
         row_container.append(cell_element);
       });
