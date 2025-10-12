@@ -1,6 +1,6 @@
 import { create_div } from "../components/create_div";
-import { Maze } from "./maze";
-import type { Maze_Render } from "../interfaces/maze_renderer";
+import { Maze } from "../models/maze";
+import type { Maze_Render } from "./maze_renderer";
 
 export class Numerical_Maze implements Maze_Render {
   render(maze: Maze): HTMLDivElement {

@@ -1,4 +1,4 @@
-import { Maze } from "../classes/maze";
+import { Maze } from "../models/maze";
 
 export function create_maze() {
   const maze = new Maze(5, 4);

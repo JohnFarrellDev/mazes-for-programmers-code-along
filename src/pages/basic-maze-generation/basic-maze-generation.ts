@@ -1,6 +1,6 @@
-import { Bordered_Maze } from "../../classes/bordered_maze";
-import { Maze } from "../../classes/maze";
-import { Numerical_Maze } from "../../classes/numerical_maze";
+import { Bordered_Maze } from "../../renderers/bordered_maze";
+import { Maze } from "../../models/maze";
+import { Numerical_Maze } from "../../renderers/numerical_maze";
 
 const maze = new Maze(6, 8);
 
