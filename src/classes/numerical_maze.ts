@@ -11,7 +11,7 @@ export class Numerical_Maze extends Maze {
       el.style.height = "50px";
       el.style.display = "grid";
       el.style.placeItems = "center";
-      el.textContent = `${cell.row} ${cell.column}`;
+      el.textContent = `${cell.column + 1 + cell.row * this.width}`;
     });
   }
 }

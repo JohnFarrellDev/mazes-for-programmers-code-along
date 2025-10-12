@@ -17,6 +17,10 @@ export class Maze {
     });
   }
 
+  get width() {
+    return this.#width;
+  }
+
   get cells() {
     return this.#cells;
   }
